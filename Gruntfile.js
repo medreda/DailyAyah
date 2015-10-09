@@ -37,8 +37,12 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       babel: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
+        files: ['<%= config.app %>/scripts/*.js'],
         tasks: ['babel:dist']
+      },
+      babel_vendor: {
+        files: ['<%= config.app %>/scripts/vendor/*.js'],
+        tasks: ['babel:vendor_dist']
       },
       babelTest: {
         files: ['test/spec/{,*/}*.js'],
@@ -148,8 +152,17 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/scripts',
-          src: '{,*/}*.js',
+          src: ['{,*/}*.js', '!vendor/*.js'],
           dest: '.tmp/scripts',
+          ext: '.js'
+        }]
+      },
+      vendor_dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/scripts/vendor',
+          src: '{,*/}*.js',
+          dest: '.tmp/scripts/vendor',
           ext: '.js'
         }]
       },
@@ -368,7 +381,7 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [
-        'babel:dist',
+        'babel:dist', 'babel:vendor_dist',
         'sass'
       ],
       test: [
