@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+
+    "name": "Daily Ayah",
+    "description": "Learn the quran ayah by ayah.",
+    "version": "0.1",
+
+    "permissions": [
+        "http://cdn.ksu.edu.sa/quran/ayat/"
+    ],
+    "chrome_url_overrides": {
+       "newtab": "index.html"
+    }
+}
