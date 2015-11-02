@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="arabic" dir="RTL">
   <head>
     <meta charset="utf-8">
     <title>DailyAyah</title>
@@ -23,51 +23,68 @@
     
   </head>
   <body>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Daily Ayah</a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><button type="button" class="btn btn-default navbar-btn btn-link next-ayah" aria-label="Next Ayah">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          </button></li>
+          <li><button type="button" class="btn btn-default navbar-btn btn-link prev-ayah" aria-label="Previous Ayah">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          </button></li>
         </ul>
-        <h3 class="text-muted">DailyAyah</h3>
-      </div>
-
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4><a href="https://html5boilerplate.com/">HTML5 Boilerplate</a></h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-
-          <h4><a href="http://libsass.org/">Sass</a></h4>
-          <p>Sass is a mature, stable, and powerful professional grade CSS extension language.</p>
-          
-
-          <h4><a href="http://getbootstrap.com/">Bootstrap</a></h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-
-          <h4><a href="http://modernizr.com/">Modernizr</a></h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-          
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <select class="form-control select-surah">
+          </select>
+          <select class="form-control select-ayah">
+            <option>1</option>
+          </select>
+          <button type="submit" class="btn btn-default">Go</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+    
+    
+    <div class="header">
+      <h1 class="ayah-txt"></h1>
+      <h2 class="ayah-nbr-decorated">(1)</h2>
+      <a href="#core" class="btn btn-lg link-to-core" role="button"><span class="glyphicon glyphicon-chevron-down white"></span></a>
+    </div>
+    <div class="subheader"></div>
+    <div class="subsubheader"></div>
+    <div class="core" id="core">
+      <div class="container-fluid">
+        <div class="row" style="margin-top:20px">
+          <div class="col-md-6 text-center pull-right col-xs-12">
+            <img src="" alt="safha" class="safha-img img-responsive center-block">
+          </div>
+          <div class="col-md-6 tafseer">
+            <h4 class="ar tafseer-heading">تفسير الآية<span class="tafseer-author"></span></h4>
+            <p class="ar tafseer-text text-justify"></p>
+          </div>
         </div>
       </div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
     </div>
+      
+    <pre class="debug hide"></pre>
     
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -92,6 +109,8 @@
     
 
     <!-- build:js scripts/main.js -->
+    <script src="scripts/vendor/ayat.js"></script>
+    <script src="scripts/vendor/sa3dy.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 
