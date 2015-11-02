@@ -36,9 +36,9 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
-      babel: {
+      babel_core: {
         files: ['<%= config.app %>/scripts/*.js'],
-        tasks: ['babel:dist']
+        tasks: ['babel:core_dist']
       },
       babel_vendor: {
         files: ['<%= config.app %>/scripts/vendor/*.js'],
@@ -146,9 +146,19 @@ module.exports = function (grunt) {
     // Compiles ES6 with Babel
     babel: {
       options: {
+        modules: 'amd',
         sourceMap: true
       },
       dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>/scripts',
+          src: ['{,*/}*.js'],
+          dest: '.tmp/scripts',
+          ext: '.js'
+        }]
+      },
+      core_dist: {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/scripts',
@@ -381,14 +391,14 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up build process
     concurrent: {
       server: [
-        'babel:dist', 'babel:vendor_dist',
+        'babel:dist',
         'sass'
       ],
       test: [
         'babel'
       ],
       dist: [
-        'babel',
+        'babel:dist',
         'sass',
         'imagemin',
         'svgmin'
