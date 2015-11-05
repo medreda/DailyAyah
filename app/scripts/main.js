@@ -6,37 +6,37 @@ let DailyAyah = function() {
   function init() {
     new_day() && increment() 
     day_data = data.ayat[index - 1]
-    DailyAyah.tafseer = new Tafseer({name: "sa3dy"})
+    DailyAyah.tafseer = new Tafseer({name: 'sa3dy'})
     
     initView()
   }
   
   function initView() {
-    $(".prev-ayah").click( () => change_ayah(-1) )
-    $(".next-ayah").click( () => change_ayah(+1) )
+    $('.prev-ayah').click( () => change_ayah(-1) )
+    $('.next-ayah').click( () => change_ayah(+1) )
     
     initAyahSelectors()
   }
   
   function initAyahSelectors() {
-    let $select_surah = $(".select-surah")
-    let $select_ayah = $(".select-ayah")
+    let $select_surah = $('.select-surah')
+    let $select_ayah = $('.select-ayah')
     
     initSuratOptions()
     $select_surah.change(initAyatOptions)
     
     function initSuratOptions() {
       $.each(data.surat, function() {
-          $select_surah.append($("<option />").val(this.id).text(this.name_ar).data("count", this.count))
+        $select_surah.append($('<option />').val(this.id).text(this.name_ar).data('count', this.count))
       });
     }
     
     function initAyatOptions() {
-      let count = $select_surah.find("option:selected").data("count")
+      let count = $select_surah.find('option:selected').data('count')
       
-      $select_ayah.html("");
+      $select_ayah.html('');
       for (let i=1; i<=count; i++) {
-        $select_ayah.append($("<option />").val(i).text(i))
+        $select_ayah.append($('<option />').val(i).text(i))
       }
     }
   }
@@ -63,7 +63,7 @@ let DailyAyah = function() {
   
   //example "http://quran.ksu.edu.sa/index.php?l=ar#aya=1_1&m=hafs&qaree=husary&trans=ar_mu";
   function url_for(data, options) {
-      return `http://quran.ksu.edu.sa/index.php?$aya=${data.sura}_${data.aya}`
+    return `http://quran.ksu.edu.sa/index.php?$aya=${data.sura}_${data.aya}`
   }
   
   let ornated_ayah_nbr = (nbr) => ` &#64831;${nbr}&#64830;`
@@ -77,17 +77,17 @@ let DailyAyah = function() {
     logs.safha_url = safha_url(day_data.safha)
     logs.day_data = day_data
     logs.tafseer = DailyAyah.tafseer.getAyah(day_data.id)
-    $(".debug").html(JSON.stringify(logs, null, 4))
+    $('.debug').html(JSON.stringify(logs, null, 4))
   }
   
   
   function render() {
-    $(".safha-img").attr( "src" , safha_url(day_data.safha) )
-    $(".ayah-txt").html(day_data.text)
-    $(".ayah-nbr-decorated").html(ornated_ayah_nbr(day_data.aya))
-    $(".ayah-nbr").html(`${data.surat[day_data.sura-1].name_ar}  - ${day_data.aya}`)
-    $(".tafseer-text").html(DailyAyah.tafseer.getAyah(day_data.id))
-    $(".tafseer-author").html(DailyAyah.tafseer.display_name)
+    $('.safha-img').attr( 'src' , safha_url(day_data.safha) )
+    $('.ayah-txt').html(day_data.text)
+    $('.ayah-nbr-decorated').html(ornated_ayah_nbr(day_data.aya))
+    $('.ayah-nbr').html(`${data.surat[day_data.sura-1].name_ar}  - ${day_data.aya}`)
+    $('.tafseer-text').html(DailyAyah.tafseer.getAyah(day_data.id))
+    $('.tafseer-author').html(DailyAyah.tafseer.display_name)
   }
   
   class Tafseer {
@@ -98,13 +98,13 @@ let DailyAyah = function() {
     
     display_name (name) {
       let display_names = {
-        "sa3dy": "السعدي"
+        'sa3dy': 'السعدي'
       }
       return display_names[name]
     }
     
     getAyah (index) {
-      if (this.name === "sa3dy")
+      if (this.name === 'sa3dy')
         return sa3dy[index-1].text
     }
     
